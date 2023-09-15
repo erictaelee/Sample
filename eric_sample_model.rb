@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # It is a model to represent applications and processes for the GB to detect and shutdown
-class GuardianBrowserDenylist < ApplicationRecord
+class Sample < ApplicationRecord
   enum os_name: %i(win32 darwin)
   validates :os_name, presence: true
   validates :unpermitted_application, presence: true
