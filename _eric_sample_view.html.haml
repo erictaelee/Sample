@@ -1,0 +1,21 @@
+- if unpermitted_applications.present?
+  .table-responsive
+    %table.table.table-semibordered.table-hover.table-default
+      %thead
+        %tr
+          .col-md-12
+            %h2.fs-3= os_name.titleize
+      %tbody
+        %tr
+          %th= 'Application'
+          %th= 'One Time Shutdown'
+        - unpermitted_applications.each do |unpermitted_application|
+          %tr
+            %td= unpermitted_application.unpermitted_application
+            %td= react_component('GuardianBrowserDenyLists/CheckBox', render('denylist.json.jbuilder', unpermitted_application: unpermitted_application), tag: 'span')
+            %td.text-right
+              %span
+                = link_to I18n.t('views.guardian_browser_denylists.index.delete'),
+                  guardian_browser_denylist_url(unpermitted_application),
+                  class: 'btn btn-danger btn-sm', method: :delete,
+                  data: { confirm: I18n.t('views.guardian_browser_denylists.index.ensure') }
